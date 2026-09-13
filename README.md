@@ -239,5 +239,3 @@ npm run dev
 
 ---
 
-## 📄 License
-MIT License. Built for heroes leveling up in the real world.
