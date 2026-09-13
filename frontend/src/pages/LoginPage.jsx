@@ -79,6 +79,30 @@ export default function LoginPage() {
           </motion.div>
         )}
 
+        {/* Demo Account Quick Access */}
+        <div className="mb-5 p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-xs text-starlight-muted flex flex-col gap-2">
+          <div className="flex items-center justify-between">
+            <span className="text-white font-medium flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-gold" />
+              Demo Hero Account
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                setUsername('hero')
+                setPassword('password123')
+              }}
+              className="text-[11px] font-bold text-gold hover:text-amber-300 underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              Fill Credentials
+            </button>
+          </div>
+          <div className="text-[11px] text-starlight-muted/80 flex items-center gap-3">
+            <span>User: <strong className="text-white">hero</strong></span>
+            <span>Pass: <strong className="text-white">password123</strong></span>
+          </div>
+        </div>
+
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
