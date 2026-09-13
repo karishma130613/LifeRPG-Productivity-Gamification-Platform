@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: life-rpg-backend
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:file:./data/liferpgdb;DB_CLOSE_DELAY=-1;MODE=MySQL}
+    username: ${DATABASE_USERNAME:sa}
+    password: ${DATABASE_PASSWORD:}
+    driver-class-name: ${DATABASE_DRIVER:org.h2.Driver}
+  jpa:
+    database-platform: ${JPA_DIALECT:org.hibernate.dialect.H2Dialect}
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
+
+jwt:
+  secret: ${JWT_SECRET:starlight_adventure_life_rpg_super_secret_jwt_key_2026_secure_key_123456789}
+  expirationMs: ${JWT_EXPIRATION_MS:86400000}
+
+ai:
+  api-key: ${AI_API_KEY:}

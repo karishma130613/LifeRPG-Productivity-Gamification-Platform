@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   LIFE RPG — STARLIGHT ADVENTURE DESIGN SYSTEM
+   ===================================================== */
+
+:root {
+  --color-midnight:    #0B0F19;
+  --color-navy:        #111827;
+  --color-navy-light:  #1a2540;
+  --color-purple-rpg:  #1E1B4B;
+  --color-purple-glow: #8B5CF6;
+  --color-lavender:    #C084FC;
+  --color-gold:        #F59E0B;
+  --color-gold-light:  #FCD34D;
+  --color-starlight:   #E2E8F0;
+  --color-starlight-dim: #94A3B8;
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Semantic theme tokens (Night defaults) */
+  --theme-bg:          #0B0F19;
+  --theme-surface:     rgba(255,255,255,0.05);
+  --theme-surface-hover: rgba(255,255,255,0.10);
+  --theme-border:      rgba(255,255,255,0.10);
+  --theme-border-hover: rgba(139,92,246,0.30);
+  --theme-text:        #E2E8F0;
+  --theme-text-muted:  #64748B;
+  --theme-sidebar-bg:  rgba(17,24,39,0.95);
+  --theme-card-bg:     rgba(255,255,255,0.04);
+  --theme-overlay-bg:  rgba(11,15,25,0.82);
+  --theme-scrollbar:   #8B5CF6;
+}
+
+/* ── DAY THEME OVERRIDES ── */
+html[data-theme="day"] {
+  --theme-bg:          #ddeef5;
+  --theme-surface:     rgba(255,255,255,0.55);
+  --theme-surface-hover: rgba(255,255,255,0.75);
+  --theme-border:      rgba(30,80,160,0.18);
+  --theme-border-hover: rgba(30,80,180,0.40);
+  --theme-text:        #0d1f3c;
+  --theme-text-muted:  #3a5275;
+  --theme-sidebar-bg:  rgba(12, 35, 75, 0.94);
+  --theme-card-bg:     rgba(255,255,255,0.50);
+  --theme-overlay-bg:  rgba(8,20,50,0.72);
+  --theme-scrollbar:   #2a6abf;
+}
+
+/* ── DAY: Override all hardcoded white / starlight text to dark navy ── */
+html[data-theme="day"] .text-white,
+html[data-theme="day"] .text-starlight,
+html[data-theme="day"] .text-starlight-light,
+html[data-theme="day"] .text-starlight-bright {
+  color: #0d1f3c !important;
+}
+
+html[data-theme="day"] .text-starlight-muted,
+html[data-theme="day"] .text-starlight-dim,
+html[data-theme="day"] .text-starlight-dark {
+  color: #3a5275 !important;
+}
+
+/* Headings */
+html[data-theme="day"] h1,
+html[data-theme="day"] h2,
+html[data-theme="day"] h3,
+html[data-theme="day"] h4,
+html[data-theme="day"] h5,
+html[data-theme="day"] h6 {
+  color: #0a1a33;
+}
+
+/* Paragraphs & spans that inherit */
+html[data-theme="day"] p,
+html[data-theme="day"] span:not(.text-gold):not(.text-gold-light):not(.text-lavender):not(.text-purple-glow):not(.text-emerald-400):not(.text-red-400):not(.text-amber-400):not(.text-cyan-300):not(.text-purple-300):not(.text-purple-200):not(.text-purple-400) {
+  color: inherit;
+}
+
+/* Input fields */
+html[data-theme="day"] .input-field {
+  background: rgba(255,255,255,0.70) !important;
+  border-color: rgba(30,80,160,0.25) !important;
+  color: #0d1f3c !important;
+}
+html[data-theme="day"] .input-field::placeholder {
+  color: #6a88a8 !important;
+}
+html[data-theme="day"] .input-field:focus {
+  border-color: rgba(59,130,246,0.55) !important;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.15) !important;
+}
+
+/* Labels */
+html[data-theme="day"] .label-field {
+  color: #2a4060 !important;
+}
+
+/* Font mono / code text */
+html[data-theme="day"] .font-mono {
+  color: #1a3055;
+}
+
+/* Badge locked override for day */
+html[data-theme="day"] .badge-locked {
+  background: rgba(30,80,160,0.12) !important;
+  color: #4a6890 !important;
+  border-color: rgba(30,80,160,0.25) !important;
+}
+
+/* Muted stat numbers */
+html[data-theme="day"] .text-xs,
+html[data-theme="day"] .text-sm {
+  color: inherit;
+}
+
+/* Force dark text on bright glass cards */
+html[data-theme="day"] .glass-card,
+html[data-theme="day"] .glass-card-hover {
+  color: #0d1f3c;
+}
+
+/* XP/HP bar tracks — use visible color in day */
+html[data-theme="day"] .xp-bar-track,
+html[data-theme="day"] .hp-bar-track {
+  background: rgba(30,80,160,0.12) !important;
+}
+
+/* Smooth transition between themes across all elements */
+html, body, * {
+  transition:
+    background-color 0.6s var(--transition-smooth),
+    border-color 0.6s var(--transition-smooth),
+    color 0.6s var(--transition-smooth),
+    box-shadow 0.6s var(--transition-smooth) !important;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Inter', sans-serif;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--theme-sidebar-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--theme-scrollbar); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-lavender); }
+
+  /* Focus outline */
+  :focus-visible {
+    outline: 2px solid var(--color-purple-glow);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* ── Glass Cards ── */
+  .glass-card {
+    background: var(--theme-surface);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--theme-border);
+    border-radius: 1rem;
+  }
+  .glass-card-hover {
+    background: var(--theme-surface);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--theme-border);
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .glass-card-hover:hover {
+    background: var(--theme-surface-hover);
+    border-color: var(--theme-border-hover);
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply bg-gradient-to-r from-purple-muted to-purple-glow text-white font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 hover:scale-105 hover:shadow-purple-glow
+           active:scale-95 focus-visible:ring-2 focus-visible:ring-purple-glow;
+  }
+  .btn-gold {
+    @apply bg-gradient-to-r from-gold-dark to-gold text-midnight-900 font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 hover:scale-105 hover:shadow-gold-glow
+           active:scale-95 focus-visible:ring-2 focus-visible:ring-gold;
+  }
+  .btn-ghost {
+    @apply border border-white/20 text-starlight font-medium px-6 py-3 rounded-xl
+           transition-all duration-200 hover:bg-white/10 hover:border-white/40
+           active:scale-95 focus-visible:ring-2 focus-visible:ring-white/40;
+  }
+  .btn-danger {
+    @apply bg-red-500/20 border border-red-500/40 text-red-400 font-medium px-4 py-2 rounded-lg
+           transition-all duration-200 hover:bg-red-500/30;
+  }
+  .btn-icon {
+    @apply p-2 rounded-lg transition-all duration-200 hover:bg-white/10 active:scale-90 flex items-center justify-center;
+  }
+
+  /* ── Typography ── */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-light to-gold bg-clip-text text-transparent;
+  }
+  .text-gradient-purple {
+    @apply bg-gradient-to-r from-lavender to-purple-glow bg-clip-text text-transparent;
+  }
+  .text-gradient-starlight {
+    @apply bg-gradient-to-r from-starlight-bright to-lavender bg-clip-text text-transparent;
+  }
+
+  /* ── RPG Specific ── */
+  .xp-bar-track {
+    @apply w-full h-2 bg-white/10 rounded-full overflow-hidden;
+  }
+  .xp-bar-fill {
+    @apply h-full rounded-full bg-gradient-to-r from-purple-muted to-purple-glow transition-all duration-700 ease-out;
+  }
+  .hp-bar-track {
+    @apply w-full h-3 bg-white/10 rounded-full overflow-hidden;
+  }
+  .hp-bar-fill {
+    @apply h-full rounded-full transition-all duration-700 ease-out;
+  }
+
+  /* Quest Status Badges */
+  .badge-available {
+    @apply text-xs font-semibold bg-purple-glow/20 text-purple-light border border-purple-glow/30 px-2 py-0.5 rounded-full;
+  }
+  .badge-completed {
+    @apply text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full;
+  }
+  .badge-locked {
+    @apply text-xs font-semibold bg-white/5 text-starlight-dim border border-white/10 px-2 py-0.5 rounded-full;
+  }
+  .badge-in-progress {
+    @apply text-xs font-semibold bg-gold/20 text-gold border border-gold/30 px-2 py-0.5 rounded-full;
+  }
+
+  /* Difficulty Badges */
+  .badge-easy       { @apply text-xs font-semibold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full; }
+  .badge-medium     { @apply text-xs font-semibold bg-gold/20 text-gold px-2 py-0.5 rounded-full; }
+  .badge-hard       { @apply text-xs font-semibold bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full; }
+  .badge-legendary  { @apply text-xs font-semibold bg-purple-glow/20 text-lavender px-2 py-0.5 rounded-full; }
+
+  /* Category Color Dots */
+  .category-dot { @apply w-2 h-2 rounded-full flex-shrink-0; }
+
+  /* Sidebar & Navigation */
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 cursor-pointer;
+    color: var(--theme-text-muted);
+  }
+  .nav-item:hover {
+    background: var(--theme-surface-hover);
+    color: var(--theme-text);
+  }
+  .nav-item-active {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl bg-purple-glow/20 text-lavender border border-purple-glow/30 cursor-pointer;
+  }
+
+  /* Stat Counter Cards */
+  .stat-card {
+    @apply glass-card px-4 py-3 flex items-center gap-3;
+  }
+
+  /* Modal Overlays */
+  .modal-overlay {
+    @apply fixed inset-0 bg-midnight-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+  }
+  .modal-content {
+    @apply glass-card p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto;
+  }
+
+  /* Form Inputs */
+  .input-field {
+    @apply w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-starlight placeholder-starlight-dim/60
+           focus:outline-none focus:ring-2 focus:ring-purple-glow/50 focus:border-purple-glow/50
+           transition-all duration-200;
+  }
+  .select-field {
+    @apply input-field appearance-none cursor-pointer;
+  }
+  .label-field {
+    @apply block text-sm font-medium text-starlight-dim mb-1.5;
+  }
+
+  /* Particle Dot */
+  .star-dot {
+    @apply absolute rounded-full bg-white opacity-60 animate-star-twinkle;
+  }
+
+  /* World Region Cards */
+  .world-region-unlocked {
+    @apply glass-card-hover p-5 flex flex-col gap-3;
+  }
+  .world-region-locked {
+    @apply glass-card p-5 flex flex-col gap-3 opacity-40 cursor-not-allowed;
+  }
+
+  /* Achievement Badge */
+  .achievement-unlocked {
+    @apply glass-card p-4 flex items-center gap-4 border-gold/20 bg-gold/5;
+  }
+  .achievement-locked {
+    @apply glass-card p-4 flex items-center gap-4 opacity-50 grayscale;
+  }
+}
+
+@layer utilities {
+  .bg-midnight { background-color: var(--color-midnight); }
+  .border-glow-purple { border-color: rgba(139, 92, 246, 0.4); }
+  .border-glow-gold   { border-color: rgba(245, 158, 11, 0.4); }
+  
+  .text-balance { text-wrap: balance; }
+  
+  /* Glow effects */
+  .glow-gold   { filter: drop-shadow(0 0 8px rgba(245,158,11,0.6)); }
+  .glow-purple { filter: drop-shadow(0 0 8px rgba(139,92,246,0.6)); }
+  .glow-white  { filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)); }
+
+  /* Shimmer loading effect */
+  .shimmer-effect {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    background-size: 200%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Framer Motion Helpers ── */
+.page-container {
+  min-height: 100vh;
+}
+
+/* ── Starfield Canvas ── */
+#starfield-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
