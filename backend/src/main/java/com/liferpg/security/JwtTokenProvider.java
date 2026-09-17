@@ -13,7 +13,7 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    @Value("${jwt.secret:starlight_adventure_life_rpg_super_secret_jwt_key_2026_secure_key_123456789}")
+    @Value("${jwt.secret}")
     private String jwtSecret;
 
     @Value("${jwt.expirationMs:86400000}")

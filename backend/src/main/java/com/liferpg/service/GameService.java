@@ -31,9 +31,6 @@ public class GameService {
     private BossBattleRepository bossBattleRepository;
 
     @Autowired
-    private QuestRepository questRepository;
-
-    @Autowired
     private QuestService questService;
 
     @Autowired
@@ -496,7 +493,7 @@ public class GameService {
                     u.getUsername(),
                     cp != null ? cp.getAvatar() : "default",
                     cp != null ? cp.getClassName() : "Adventurer",
-                    cp != null ? cp.getLevel() : 1,
+                    cp == null || cp.getLevel() == null ? 1 : cp.getLevel().intValue(),
                     s.getGameId(),
                     s.getBestScore(),
                     s.getGamesWon()

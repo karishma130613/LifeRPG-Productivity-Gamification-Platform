@@ -19,7 +19,7 @@ export default function AppLayout() {
       <div className="relative z-10 flex min-h-screen">
         <Sidebar />
         
-        <main className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
+        <main className="app-main flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
@@ -27,7 +27,7 @@ export default function AppLayout() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="flex-1 p-4 lg:p-6 xl:p-8"
+              className="app-page flex-1 p-4 lg:p-6 xl:p-8"
             >
               <Outlet />
             </motion.div>

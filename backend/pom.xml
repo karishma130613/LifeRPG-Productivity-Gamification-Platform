@@ -16,7 +16,7 @@
     <description>Backend service for Life RPG - Don't just track your life. Play it.</description>
 
     <properties>
-        <java.version>25</java.version>
+        <java.version>17</java.version>
         <jjwt.version>0.11.5</jjwt.version>
     </properties>
 

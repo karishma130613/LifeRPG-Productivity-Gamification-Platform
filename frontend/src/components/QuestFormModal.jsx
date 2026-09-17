@@ -100,7 +100,7 @@ export default function QuestFormModal({ onClose, onSaved, editQuest = null }) {
           </div>
 
           {/* Category + Difficulty */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="label-field" htmlFor="quest-cat">Category</label>
               <div className="relative">
@@ -122,7 +122,7 @@ export default function QuestFormModal({ onClose, onSaved, editQuest = null }) {
           </div>
 
           {/* Priority + Due Date */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="label-field" htmlFor="quest-prio">Priority</label>
               <div className="relative">
