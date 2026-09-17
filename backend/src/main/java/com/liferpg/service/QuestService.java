@@ -91,7 +91,7 @@ public class QuestService {
 
         quest.setDueDate(questDTO.getDueDate());
         quest.setPriority(questDTO.getPriority() != null ? questDTO.getPriority() : "MEDIUM");
-        quest.setIsMainQuest(questDTO.getIsMainQuest() != null ? questDTO.getIsMainQuest() : false);
+        quest.setIsMainQuest(Boolean.TRUE.equals(questDTO.getIsMainQuest()));
         quest.setStatus("AVAILABLE");
         quest.setGameType(determineGameType(questDTO.getGameType(), quest.getCategory()));
 

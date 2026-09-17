@@ -15,7 +15,7 @@ export default function BottomNav() {
       className="fixed bottom-0 left-0 right-0 lg:hidden z-40 bg-navy/95 backdrop-blur border-t border-white/10"
       aria-label="Mobile navigation"
     >
-      <div className="flex items-center justify-around px-2 py-2">
+      <div className="mobile-nav-inner flex items-center justify-around px-2 py-2">
         {items.map(({ to, icon: Icon, label }) => (
           <NavLink
             key={to}

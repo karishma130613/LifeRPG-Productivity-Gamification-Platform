@@ -12,8 +12,13 @@ export const AuthProvider = ({ children }) => {
     const storedToken = localStorage.getItem('liferpg_token')
     const storedUser  = localStorage.getItem('liferpg_user')
     if (storedToken && storedUser) {
-      setToken(storedToken)
-      setUser(JSON.parse(storedUser))
+      try {
+        setToken(storedToken)
+        setUser(JSON.parse(storedUser))
+      } catch {
+        localStorage.removeItem('liferpg_token')
+        localStorage.removeItem('liferpg_user')
+      }
     }
     setLoading(false)
   }, [])

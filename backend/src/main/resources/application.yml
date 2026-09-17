@@ -1,16 +1,14 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 spring:
   application:
     name: life-rpg-backend
   datasource:
-    url: ${DATABASE_URL:jdbc:h2:file:./data/liferpgdb;DB_CLOSE_DELAY=-1;MODE=MySQL}
-    username: ${DATABASE_USERNAME:sa}
-    password: ${DATABASE_PASSWORD:}
-    driver-class-name: ${DATABASE_DRIVER:org.h2.Driver}
+    url: ${DB_URL:${DATABASE_URL:jdbc:h2:file:./data/liferpgdb;DB_CLOSE_DELAY=-1;MODE=MySQL}}
+    username: ${DB_USERNAME:${DATABASE_USERNAME:sa}}
+    password: ${DB_PASSWORD:${DATABASE_PASSWORD:}}
   jpa:
-    database-platform: ${JPA_DIALECT:org.hibernate.dialect.H2Dialect}
     hibernate:
       ddl-auto: update
     show-sql: false
@@ -22,8 +20,12 @@ spring:
       mode: always
 
 jwt:
-  secret: ${JWT_SECRET:starlight_adventure_life_rpg_super_secret_jwt_key_2026_secure_key_123456789}
+  secret: ${JWT_SECRET}
   expirationMs: ${JWT_EXPIRATION_MS:86400000}
+
+app:
+  cors:
+    allowed-origins: ${FRONTEND_URL:http://localhost:5173,https://life-rpg-gamification.netlify.app}
 
 ai:
   api-key: ${AI_API_KEY:}

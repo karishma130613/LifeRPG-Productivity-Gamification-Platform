@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: life-rpg-backend
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: FRONTEND_URL
+        value: https://life-rpg-gamification.netlify.app,http://localhost:5173

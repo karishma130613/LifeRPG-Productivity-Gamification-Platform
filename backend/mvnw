@@ -1,0 +1,24 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Life RPG - Maven Wrapper Script
+# ----------------------------------------------------------------------------
+
+set -e
+
+MAVEN_PROJECTBASEDIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+export MAVEN_PROJECTBASEDIR
+
+if [ -n "$MAVEN_HOME" ] && [ -x "$MAVEN_HOME/bin/mvn" ]; then
+  exec "$MAVEN_HOME/bin/mvn" "$@"
+fi
+
+if command -v mvn >/dev/null 2>&1; then
+  exec mvn "$@"
+fi
+
+if [ -f "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" ]; then
+  exec java -jar "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" "$@"
+fi
+
+echo "Maven is not installed and the Maven Wrapper JAR is missing." >&2
+exit 1
